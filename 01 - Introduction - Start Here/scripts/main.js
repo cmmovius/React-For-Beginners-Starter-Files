@@ -10,7 +10,7 @@ var createBrowserHistory = require('history/lib/createBrowserHistory');
 var helpers = require('./helpers.js');
 
 var App = React.createClass({
-  getInitalState: function() {
+  getInitialState: function() {
     return {
       fishes: {},
       order: {}
@@ -20,7 +20,6 @@ var App = React.createClass({
     var timestamp = (new Date()).getTime();
     this.state.fishes['fish-' + timestamp] = fish;
     this.setState({fishes: this.state.fishes});
-    console.log(this.state);
   },
   render: function() {
     console.log(this.state);
@@ -49,7 +48,6 @@ var AddFishForm = React.createClass({
     this.props.addFish(fish);
   },
   render: function() {
-    console.log(this.props);
     return (
       <form className='fish-edit' onSubmit={this.createFish}>
         <input type='text' ref='name' placeholder='Fish Name'/>
