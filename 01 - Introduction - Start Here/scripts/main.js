@@ -21,6 +21,11 @@ var App = React.createClass({
     this.state.fishes['fish-' + timestamp] = fish;
     this.setState({fishes: this.state.fishes});
   },
+  loadSamples: function() {
+    this.setState({
+      fishes: require('./sample-fishes.js')
+    });
+  },
   render: function() {
     console.log(this.state);
     return (
@@ -29,7 +34,7 @@ var App = React.createClass({
           <Header tagline='Fresh Seafood Market'/>
         </div>
         <Order />
-        <Inventory addFish={this.addFish}/>
+        <Inventory addFish={this.addFish} loadSamples={this.loadSamples}/>
       </div>
     )
   }
@@ -46,10 +51,11 @@ var AddFishForm = React.createClass({
       image: this.refs.image.value
     }
     this.props.addFish(fish);
+    this.refs.fishForm.reset();
   },
   render: function() {
     return (
-      <form className='fish-edit' onSubmit={this.createFish}>
+      <form className='fish-edit' ref='fishForm' onSubmit={this.createFish}>
         <input type='text' ref='name' placeholder='Fish Name'/>
         <input type='text' ref='price' placeholder='Fish Price'/>
         <select ref='status'>
@@ -97,6 +103,7 @@ var Inventory = React.createClass({
         <h2>Inventory</h2>
 
         <AddFishForm {...this.props}/>
+        <button onClick={this.props.loadSamples}>Load Sample Fish</button>
       </div>
     )
   }
