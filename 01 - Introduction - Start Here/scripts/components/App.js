@@ -11,7 +11,7 @@ import Catalyst from 'react-catalyst';
 
 // Firebase
 import Rebase  from 're-base';
-var base = Rebase.createClass('https://catch-of-the-day.firebaseio.com/');
+var base = Rebase.createClass('https://catch-of-the-day-40266.firebaseio.com/');
 
 var App = React.createClass({
   mixins : [Catalyst.LinkedStateMixin],
@@ -81,7 +81,7 @@ var App = React.createClass({
           <ul className="list-of-fishes">
             {Object.keys(this.state.fishes).map(this.renderFish)}
           </ul>
-        </div>  
+        </div>
         <Order fishes={this.state.fishes} order={this.state.order} removeFromOrder={this.removeFromOrder} />
         <Inventory addFish={this.addFish} loadSamples={this.loadSamples} fishes={this.state.fishes} linkState={this.linkState} removeFish={this.removeFish} />
       </div>
